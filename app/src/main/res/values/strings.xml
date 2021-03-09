@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">E KTA PKS</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="belum_punya_akun">Belum Punya Akun?</string>
+    <string name="sign_in">Masuk</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="warning">Kartu ini tidak dipergunakan untuk kepentingan di luar keanggotaan PKS.</string>
+    <string name="link">http://13.212.79.148:8069</string>
+    <string name="sign_up">Daftar</string>
+    <string name="sudah_punya_akun">Sudah Punya Akun?</string>
+    <string name="nama">Nama</string>
+    <string name="address">Alamat</string>
+    <string name="kta_text">KARTU TANDA ANGGOTA PARTAI KEADILAN SEJAHTERA</string>
+    <string name="loading">Loading...</string>
+    <string name="province">Provinsi</string>
+    <string name="city">Kota</string>
+    <string name="District">Kecamatan</string>
+    <string name="village">Desa</string>
+    <string name="district">Kecamatan</string>
+
+    <string-array name="gender">
+        <item>Laki-Laki</item>
+        <item>Perempuan</item>
+    </string-array>
+</resources>
