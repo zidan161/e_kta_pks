@@ -1,11 +1,11 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ImageView
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.databinding.FragmentMainBinding
 import com.squareup.picasso.Picasso
 import com.synnapps.carouselview.ImageListener
@@ -15,6 +15,8 @@ class MainFragment : Fragment(), MainPresenter.MainView, ImageListener {
     private var binding: FragmentMainBinding? = null
     private val bind get() = binding!!
     private lateinit var presenter: MainPresenter
+    private lateinit var adapter: EventViewAdapter
+    private val events: ArrayList<Event> = arrayListOf()
 
     private var news: MutableList<Int> = mutableListOf(R.drawable.pks1, R.drawable.pks2, R.drawable.pks3)
 
@@ -26,6 +28,11 @@ class MainFragment : Fragment(), MainPresenter.MainView, ImageListener {
 
         bind.cvNews.pageCount = news.size
         bind.cvNews.setImageListener(this)
+        bind.cvNews.setImageClickListener {
+            val intent = Intent(context, DetailActivity::class.java)
+            intent.putExtra(DetailActivity.ID, "https://pks.id/content/survey-sebut-39-persen-masyarakat-takut-bicara-politik-bukhori-pemerintahan-jokowi-berpotensi-bawa-mundur-demokrasi")
+            startActivity(intent)
+        }
 
         presenter = MainPresenter(this)
         presenter.getNews()
@@ -34,7 +41,14 @@ class MainFragment : Fragment(), MainPresenter.MainView, ImageListener {
     }
 
     override fun setNews(data: List<String>) {
-        TODO("Not yet implemented")
+
+    }
+
+    override fun setEvents(data: List<Event>) {
+        events.addAll(data)
+        adapter = EventViewAdapter(events)
+        bind.rvEvents.layoutManager = LinearLayoutManager(context)
+        bind.rvEvents.adapter = adapter
     }
 
     override fun setImageForPosition(position: Int, imageView: ImageView?) {

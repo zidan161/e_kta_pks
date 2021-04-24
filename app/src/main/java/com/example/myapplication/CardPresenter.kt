@@ -53,7 +53,7 @@ class CardPresenter(private val view: CardView) {
     }
 
     interface ApiFun {
-        @GET("api/res.partner/search?fields=['id','name','street','street2','desa_id','kecamatan_id','kota_id','propinsi_id','jenis_kel','tmp_lahir','tgl_lahir','mobile','email','no_kta']&limit=20")
+        @GET("api/res.partner/search?fields=['id','name','street','street2','desa_id','kecamatan_id','kota_id','propinsi_id','jenis_kel','tmp_lahir','tgl_lahir','mobile','email','no_kta','tgl_aktivasi','aktivasi_oleh']&limit=20")
         fun getAnggota(@Query("domain") domain: String): Call<GetResponse>
     }
 

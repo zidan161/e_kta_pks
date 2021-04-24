@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scroll_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RegisterFragment">
@@ -16,13 +17,29 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="150dp"
-            android:src="@drawable/images"
+            android:src="@drawable/pks_image"
             android:layout_marginBottom="25dp"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox">
+
+            <EditText
+                android:id="@+id/edt_kta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="NIK"
+                android:fontFamily="@font/opensans_regular"
+                android:hint="NIK"
+                android:inputType="number"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox">
 
@@ -30,8 +47,26 @@
                 android:id="@+id/edt_nama"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/opensans_regular"
                 android:hint="@string/nama"
-                android:inputType="none"/>
+                android:inputType="text"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox">
+
+            <EditText
+                android:id="@+id/edt_birthplace"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="Nama"
+                android:fontFamily="@font/opensans_regular"
+                android:hint="Tempat Lahir"
+                android:inputType="text"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -42,35 +77,55 @@
             android:orientation="horizontal">
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginRight="16dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox">
+                android:layout_marginRight="5dp"
+                android:layout_weight="1.5">
 
                 <EditText
-                    android:id="@+id/edt_birthplace"
+                    android:id="@+id/edt_birthyear"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:autofillHints="Nama"
-                    android:hint="Tempat Lahir"
-                    android:inputType="text"/>
+                    android:maxLength="4"
+                    android:fontFamily="@font/opensans_regular"
+                    android:hint="Tahun"
+                    android:inputType="number" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:helperText="Contoh: 1970-06-01"
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox">
+                android:layout_marginRight="5dp"
+                android:layout_weight="2">
+
+                <EditText
+                    android:id="@+id/edt_birthmonth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLength="2"
+                    android:fontFamily="@font/opensans_regular"
+                    android:hint="Bulan"
+                    android:inputType="number" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2">
 
                 <EditText
                     android:id="@+id/edt_birthday"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Tgl. Lahir"
-                    android:inputType="none"/>
+                    android:maxLength="2"
+                    android:fontFamily="@font/opensans_regular"
+                    android:hint="Hari"
+                    android:inputType="number" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -88,6 +143,9 @@
                 android:layout_height="wrap_content"
                 android:autofillHints="Alamat"
                 android:hint="@string/address"
+                android:fontFamily="@font/opensans_regular"
+                android:minLines="3"
+                android:gravity="top"
                 android:inputType="textMultiLine" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -103,6 +161,7 @@
                 android:id="@+id/edt_province"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/opensans_regular"
                 android:inputType="none"
                 android:hint="@string/province"/>
 
@@ -119,6 +178,7 @@
                 android:id="@+id/edt_city"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/opensans_regular"
                 android:hint="@string/city"
                 android:inputType="none"/>
 
@@ -135,6 +195,7 @@
                 android:id="@+id/edt_district"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/opensans_regular"
                 android:hint="@string/district"
                 android:inputType="none"/>
 
@@ -144,13 +205,14 @@
             android:id="@+id/tf_village"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="36dp"
+            android:visibility="gone"
             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
 
             <AutoCompleteTextView
                 android:id="@+id/edt_village"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/opensans_regular"
                 android:hint="@string/village"
                 android:inputType="none"/>
 
@@ -160,28 +222,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox">
-
-            <EditText
-                android:id="@+id/edt_kta"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:autofillHints="NIK"
-                android:hint="NIK"
-                android:inputType="number"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginTop="36dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox">
 
             <EditText
                 android:id="@+id/edt_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/opensans_regular"
                 android:autofillHints="@string/email"
                 android:hint="@string/email"
                 android:inputType="textEmailAddress"/>
@@ -199,8 +247,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints="Password"
+                android:fontFamily="@font/opensans_regular"
                 android:hint="No. hp"
-                android:inputType="number"/>
+                android:inputType="phone"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -215,8 +264,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints="Password"
+                android:fontFamily="@font/opensans_regular"
                 android:hint="No. Telp"
-                android:inputType="number"/>
+                android:inputType="phone"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -231,6 +281,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints="Password"
+                android:fontFamily="@font/opensans_regular"
                 android:hint="@string/password"
                 android:inputType="textPassword"/>
 
@@ -241,6 +292,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/sudah_punya_akun"
+            android:fontFamily="@font/opensans_regular"
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_marginTop="8dp"/>
 
@@ -250,6 +302,7 @@
             android:layout_height="wrap_content"
             android:text="@string/sign_up"
             app:cornerRadius="20dp"
+            android:fontFamily="@font/opensans_regular"
             android:layout_marginHorizontal="50dp"
             android:layout_marginTop="30dp"/>
 

@@ -47,13 +47,14 @@ class LoginPresenter(private var ctx: Context, private val view: LoginView) {
             override fun onResponse(call: Call<GetResponse>, response: Response<GetResponse>) {
                 if (response.isSuccessful) {
                     if (response.body()!!.isSuccess) {
-                        if (response.body()!!.data[0].activationDate != null) {
+                        if (response.body()!!.data[0].activationDate != "false") {
                             if (response.body()!!.data[0].password == password) {
-                                view.isRegistered(REQUEST_AVAILABLE, response.body()!!.data[0])
+                                val data = response.body()!!.data[0]
+                                view.isRegistered(REQUEST_AVAILABLE, data)
                             } else {
                                 view.isRegistered(REQUEST_NOT_AVAILABLE, null)
                             }
-                        } else {Toast.makeText(ctx, "Akun Anda belum terdaftar", Toast.LENGTH_SHORT).show()}
+                        } else {Toast.makeText(ctx, "Akun Anda belum aktif", Toast.LENGTH_SHORT).show()}
                     } else {Toast.makeText(ctx, "Data yang anda masukkan salah", Toast.LENGTH_SHORT).show()}
                 }
             }

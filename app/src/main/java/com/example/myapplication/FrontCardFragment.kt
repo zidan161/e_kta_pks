@@ -24,7 +24,7 @@ class FrontCardFragment : Fragment(), CardPresenter.CardView {
         binding = FragmentFrontCardBinding.inflate(inflater, container, false)
         val view = bind.root
 
-        val id = activity!!.intent.getStringExtra(MainActivity.REQUEST_ID)
+        val id = requireActivity().intent.getStringExtra(MainActivity.REQUEST_ID)
 
         presenter = CardPresenter(this)
         presenter.getAnggota(id)
@@ -41,5 +41,6 @@ class FrontCardFragment : Fragment(), CardPresenter.CardView {
         bind.tvAddressVal.text = "${profile.street}, ${profile.village[0].name}, ${profile.district[0].name}, ${profile.city[0].name}, ${profile.province[0].name}"
         bind.tvMobileVal.text = profile.mobile
         bind.tvBirthdayVal.text = "${profile.birthPlace}, ${profile.birthDay}"
+        bind.tvPrintOfVal.text = profile.activationDate
     }
 }

@@ -1,56 +1,58 @@
 package com.example.myapplication
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
-import androidx.fragment.app.Fragment
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.databinding.ActivityMainBinding
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity() {
 
     companion object {
         const val REQUEST_ID = "kta"
     }
 
     private lateinit var binding: ActivityMainBinding
+    private val fragment1 = MainFragment()
+    private val fragment2 = ProfileFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btmNav.setOnNavigationItemSelectedListener { items ->
-            when(items.itemId){
-                R.id.btn_feed -> {
-                    val fragment = MainFragment()
-                    addfragment(fragment, savedInstanceState)
-                } R.id.btn_profile -> {
-                val fragment = ProfileFragment()
-                addfragment(fragment, savedInstanceState)
+        checkInternet()
+
+        binding.btnTryAgain.setOnClickListener {
+            checkInternet()
+        }
+    }
+
+    private fun checkInternet() {
+        if (!isNetworkAvailable(this)) {
+            binding.tvNoInternet.visibility = View.VISIBLE
+            binding.btnTryAgain.visibility = View.VISIBLE
+        } else {
+            binding.tvNoInternet.visibility = View.GONE
+            binding.btnTryAgain.visibility = View.GONE
+
+            val fm = supportFragmentManager
+
+            fm.beginTransaction().apply {
+                add(R.id.nav_host_fragment, fragment2, ProfileFragment::class.java.simpleName).hide(fragment2)
+                add(R.id.nav_host_fragment, fragment1, MainFragment::class.java.simpleName)
+            }.commit()
+
+            binding.navView.setOnNavigationItemSelectedListener {
+                when (it.itemId) {
+                    R.id.navigation_main -> {
+                        fm.beginTransaction().hide(fragment2).show(fragment1).commit()
+                    }
+                    R.id.navigation_profile -> {
+                        fm.beginTransaction().hide(fragment1).show(fragment2).commit()
+                    }
                 }
-            }
-            true
-        }
-        binding.btmNav.selectedItemId = R.id.btn_feed
-    }
-
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-
-    }
-
-    private fun addfragment(fragment: Fragment, savedInstanceState: Bundle?){
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction().apply {
-                replace(R.id.view_container, fragment, fragment.javaClass.simpleName)
-                addToBackStack(null)
-                commit()
+                true
             }
         }
-    }
-
-    override fun onBackPressed() {
-        finish()
-        AuthActivity().finish()
     }
 }

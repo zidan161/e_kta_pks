@@ -54,13 +54,15 @@ class MainPresenter(private val view: MainView) {
     }
 
     interface ApiFun {
-
         @GET("news")
         fun getNews(): Call<List<String>>
-    }
 
+        @GET("Events")
+        fun getEvents(): Call<List<Event>>
+    }
 
     interface MainView {
         fun setNews(data: List<String>)
+        fun setEvents(data: List<Event>)
     }
 }

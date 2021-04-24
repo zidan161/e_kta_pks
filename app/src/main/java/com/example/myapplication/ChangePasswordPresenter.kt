@@ -1,18 +1,16 @@
 package com.example.myapplication
 
+import android.content.Context
 import android.util.Log
-import com.google.gson.annotations.SerializedName
+import android.widget.Toast
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
+import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.*
 
-class ChangePasswordPresenter(private val view: PasswordView) {
+class ChangePasswordPresenter(private val ctx: Context, private val view: PasswordView) {
 
     object DataRepository {
 
@@ -39,9 +37,31 @@ class ChangePasswordPresenter(private val view: PasswordView) {
         }
     }
 
-    fun changePassword(id: String?, password: String?) {
+    fun checkAnggota(phone: String?) {
         val webService = DataRepository.create()
-        webService.updatePass(id, password).enqueue(object: Callback<PostResponse> {
+        webService.getAnggota("[('mobile','=','$phone')]").enqueue(object: Callback<GetResponse> {
+
+            override fun onResponse(call: Call<GetResponse>, response: Response<GetResponse>) {
+                if (response.isSuccessful) {
+                    if (response.body()!!.isSuccess) {
+                        val data = response.body()!!.data[0].id
+                        Toast.makeText(ctx, "Nomor telepon terdaftar", Toast.LENGTH_SHORT).show()
+                        view.isRegistered(data)
+                    } else {
+                        Toast.makeText(ctx, "Nomor telepon tidak terdaftar", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<GetResponse>, t: Throwable) {
+                Log.e("onFailure", "error", t)
+            }
+        })
+    }
+
+    fun changePassword(id: String?, data: String?) {
+        val webService = DataRepository.create()
+        webService.updatePass(id, data).enqueue(object: Callback<PostResponse> {
 
             override fun onResponse(call: Call<PostResponse>, response: Response<PostResponse>) {
                 if (response.isSuccessful) {
@@ -60,11 +80,15 @@ class ChangePasswordPresenter(private val view: PasswordView) {
     }
 
     interface ApiFun {
-        @PUT("/api/res.partner/{ID}")
-        fun updatePass(@Path("ID") id: String?, @Body pass: String?): Call<PostResponse>
+        @GET("api/res.partner/search?fields=['id','name','street','street2','no_kta']&limit=20")
+        fun getAnggota(@Query("domain") domain: String): Call<GetResponse>
+
+        @PUT("api/res.partner/{id}")
+        fun updatePass(@Path("id") id: String?, @Body data: String?): Call<PostResponse>
     }
 
     interface PasswordView {
+        fun isRegistered(id: String?)
         fun passwordSaved()
     }
 }

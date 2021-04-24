@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.Context
 import android.util.Log
 import android.widget.Toast
 import okhttp3.Interceptor
@@ -9,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.*
 
-class RegisterPresenter(private val view: RegisterView) {
+class EditPresenter(private val ctx: Context, private val view: EditView) {
 
     companion object {
         const val REQUEST_SUCCESS = 100
@@ -40,15 +41,15 @@ class RegisterPresenter(private val view: RegisterView) {
         }
     }
 
-    fun addAnggota(id: String, data: String) {
+    fun updateAnggota(id: String, data: String) {
         val webService = DataRepository.create()
-        webService.createMember(data).enqueue(object: Callback<PostResponse> {
+        webService.updateAnggota(id, data).enqueue(object: Callback<PostResponse> {
             override fun onResponse(call: Call<PostResponse>, response: Response<PostResponse>) {
                 if (response.isSuccessful) {
                     if (response.body()!!.isSuccess) {
-                        view.profileSaved(REQUEST_SUCCESS, id)
+                        view.profileUpdated(REQUEST_SUCCESS, id)
                     } else {
-                        view.profileSaved(REQUEST_FAILED, null)
+                        view.profileUpdated(REQUEST_FAILED, null)
                         Log.e("gagal", "${response.body()?.message}")
                     }
                 }
@@ -56,6 +57,27 @@ class RegisterPresenter(private val view: RegisterView) {
 
             override fun onFailure(call: Call<PostResponse>, t: Throwable) {
                 Log.e("error", "${t.message}", t)
+            }
+        })
+    }
+
+    fun getAnggota(id: String) {
+        val webService = DataRepository.create()
+        webService.getAnggota("[('no_kta','=','$id')]").enqueue(object: Callback<GetResponse> {
+
+            override fun onResponse(call: Call<GetResponse>, response: Response<GetResponse>) {
+                if (response.isSuccessful) {
+                    if (response.body()!!.isSuccess) {
+                        val data = response.body()!!.data[0]
+                        view.setAnggota(data)
+                    } else {
+                        Toast.makeText(ctx, "Nomor telepon tidak terdaftar", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<GetResponse>, t: Throwable) {
+                Log.e("onFailure", "error", t)
             }
         })
     }
@@ -119,8 +141,11 @@ class RegisterPresenter(private val view: RegisterView) {
     }
 
     interface ApiFun {
-        @POST("api/res.partner/create")
-        fun createMember(@Body profile: String): Call<PostResponse>
+        @GET("api/res.partner/search?fields=['no_kta','id','name','street','street2','desa_id','kecamatan_id','kota_id','propinsi_id','jenis_kel','phone','mobile','email','passwd_kta','tgl_aktivasi','aktivasi_oleh','tmp_lahir','tgl_lahir']&limit=20")
+        fun getAnggota(@Query("domain") domain: String): Call<GetResponse>
+
+        @PUT("api/res.partner/{id}")
+        fun updateAnggota(@Path("id") id: String, @Body profile: String): Call<PostResponse>
 
         @GET("api/pks.propinsi/search?limit=50&fields=['id','name']")
         fun getProvince(): Call<Places>
@@ -135,8 +160,9 @@ class RegisterPresenter(private val view: RegisterView) {
         fun getVillage(@Query("domain") domain: String?): Call<Places>
     }
 
-    interface RegisterView {
-        fun profileSaved(responseCode: Int, id: String?)
+    interface EditView {
+        fun setAnggota(data: Profile)
+        fun profileUpdated(responseCode: Int, id: String?)
         fun setProvince(province: List<Place>)
         fun setCity(city: List<Place>)
         fun setDistrict(district: List<Place>)

@@ -5,6 +5,9 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatDelegate
+import com.example.myapplication.databinding.ActivityAuthBinding
+import com.example.myapplication.databinding.FragmentRegisterBinding
 
 class AuthActivity : AppCompatActivity() {
 
@@ -14,10 +17,12 @@ class AuthActivity : AppCompatActivity() {
     }
 
     private lateinit var pref: SharedPreferences
+    private lateinit var binding: ActivityAuthBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_auth)
+        binding = ActivityAuthBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         pref = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
@@ -27,7 +32,10 @@ class AuthActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra(MainActivity.REQUEST_ID, id)
             startActivity(intent)
-        } else if (savedInstanceState == null){
+            finish()
+        }
+
+        if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction().apply {
                 add(R.id.view_container, LoginFragment(), LoginFragment::class.java.simpleName)
                 addToBackStack(null)

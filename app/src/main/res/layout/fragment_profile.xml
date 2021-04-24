@@ -1,181 +1,218 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProfileFragment">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_logout"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="Log Out"
-        app:cornerRadius="20dp"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/sl_main"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent">
 
-    </RelativeLayout>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="30dp"
-        app:cardCornerRadius="20dp"
-        app:layout_constraintTop_toBottomOf="@+id/cv_profile"
-        tools:layout_editor_absoluteX="30dp">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scrolled_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="15dp">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/tv_bio"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Biodata"
-                android:textColor="#FF9800"
-                android:textSize="20sp"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="15dp" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
 
-            <TextView
-                android:id="@+id/tv_telp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="No. Telp :"
-                android:textColor="@color/black"
-                app:layout_constraintStart_toStartOf="@+id/tv_bio"
-                app:layout_constraintTop_toBottomOf="@+id/tv_bio" />
+                    <ImageView
+                        android:id="@+id/back"
+                        android:layout_width="match_parent"
+                        android:layout_height="400dp"
+                        android:background="#FF7C16"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/tv_telp_val"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                android:text="No. Telp :"
-                android:textColor="@color/black"
-                app:layout_constraintStart_toEndOf="@+id/tv_telp"
-                app:layout_constraintTop_toBottomOf="@+id/tv_bio" />
+                    <LinearLayout
+                        android:id="@+id/layout_cv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="16dp"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/tv_email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Email :"
-                android:textColor="@color/black"
-                app:layout_constraintStart_toStartOf="@+id/tv_bio"
-                app:layout_constraintTop_toBottomOf="@+id/tv_telp" />
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/profile_image"
+                            android:layout_width="90dp"
+                            android:layout_height="101dp"
+                            android:layout_margin="16dp"
+                            android:src="@drawable/ic_account_circle" />
 
-            <TextView
-                android:id="@+id/tv_email_val"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Email :"
-                android:textColor="@color/black"
-                app:layout_constraintStart_toStartOf="@+id/tv_telp_val"
-                app:layout_constraintTop_toTopOf="@+id/tv_email" />
+                        <TextView
+                            android:id="@+id/tv_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/opensans_regular"
+                            android:gravity="center"
+                            android:text="Fulanah Binti Fulan"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/tv_address"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Alamat :"
-                android:textColor="@color/black"
-                app:layout_constraintStart_toStartOf="@+id/tv_bio"
-                app:layout_constraintTop_toBottomOf="@+id/tv_email" />
+                        <TextView
+                            android:id="@+id/tv_kta"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/opensans_regular"
+                            android:gravity="center"
+                            android:text="No. KTA: 3012899349010"
+                            android:textColor="@color/white"
+                            android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/tv_address2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Alamat :"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/tv_email_val"
-                app:layout_constraintTop_toTopOf="@+id/tv_address" />
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_to_card"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:fontFamily="@font/opensans_regular"
+                            android:text="Cek KTA Saya"
+                            app:cornerRadius="20dp" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cv_bio"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:layout_marginTop="30dp"
+                        app:cardCornerRadius="20dp"
+                        app:layout_constraintTop_toBottomOf="@+id/layout_cv"
+                        tools:layout_editor_absoluteX="30dp">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv_profile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        app:cardCornerRadius="20dp"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="30dp">
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="15dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="15dp">
+                            <TextView
+                                android:id="@+id/tv_bio"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/opensans_regular"
+                                android:text="Biodata"
+                                android:textColor="#FF9800"
+                                android:textSize="20sp"
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:layout_editor_absoluteX="15dp" />
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/circleImageView2"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_margin="3dp"
-                android:src="@drawable/ic_profile" />
+                            <TextView
+                                android:id="@+id/tv_telp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="16dp"
+                                android:drawableLeft="@drawable/ic_phone"
+                                android:drawablePadding="7dp"
+                                android:fontFamily="@font/opensans_regular"
+                                android:text="No. Telp :"
+                                android:textColor="@color/black"
+                                app:layout_constraintStart_toStartOf="@+id/tv_bio"
+                                app:layout_constraintTop_toBottomOf="@+id/tv_bio" />
 
-            <TextView
-                android:id="@+id/tv_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:text="Fulanah Binti Fulan"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                            <TextView
+                                android:id="@+id/tv_telp_val"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginLeft="16dp"
+                                android:layout_marginTop="16dp"
+                                android:fontFamily="@font/opensans_regular"
+                                android:textColor="@color/black"
+                                app:layout_constraintStart_toEndOf="@+id/tv_telp"
+                                app:layout_constraintTop_toBottomOf="@+id/tv_bio" />
 
-            <TextView
-                android:id="@+id/tv_kta"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:text="No. KTA: 3012899349010"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
+                            <TextView
+                                android:id="@+id/tv_email"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="16dp"
+                                android:drawableLeft="@drawable/ic_email"
+                                android:drawablePadding="7dp"
+                                android:fontFamily="@font/opensans_regular"
+                                android:text="Email :"
+                                android:textColor="@color/black"
+                                app:layout_constraintStart_toStartOf="@+id/tv_bio"
+                                app:layout_constraintTop_toBottomOf="@+id/tv_telp" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_to_card"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Cek KTA Saya"
-                app:cornerRadius="20dp" />
+                            <TextView
+                                android:id="@+id/tv_email_val"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/opensans_regular"
+                                android:textColor="@color/black"
+                                app:layout_constraintStart_toStartOf="@+id/tv_telp_val"
+                                app:layout_constraintTop_toTopOf="@+id/tv_email" />
 
-        </LinearLayout>
+                            <TextView
+                                android:id="@+id/tv_address"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="16dp"
+                                android:drawableLeft="@drawable/ic_home"
+                                android:drawablePadding="7dp"
+                                android:fontFamily="@font/opensans_regular"
+                                android:text="Alamat :"
+                                android:textColor="@color/black"
+                                app:layout_constraintStart_toStartOf="@+id/tv_bio"
+                                app:layout_constraintTop_toBottomOf="@+id/tv_email" />
 
-    </androidx.cardview.widget.CardView>
+                            <TextView
+                                android:id="@+id/tv_address2"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/opensans_regular"
+                                android:textColor="@color/black"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="@+id/tv_email_val"
+                                app:layout_constraintTop_toTopOf="@+id/tv_address" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_logout"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginBottom="24dp"
+                        android:fontFamily="@font/opensans_regular"
+                        android:text="Log Out"
+                        app:cornerRadius="20dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cv_bio" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fb_edit"
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
