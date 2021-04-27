@@ -1,13 +1,9 @@
 package com.example.myapplication
 
-import android.app.Activity
 import android.content.Context
 import android.net.ConnectivityManager
 import android.util.Patterns
-import android.view.*
-import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
-import androidx.fragment.app.Fragment
 import kotlinx.coroutines.*
 import java.io.IOException
 import java.net.InetSocketAddress
@@ -25,20 +21,6 @@ fun EditText.isValidEmail(value: String){
     Patterns.EMAIL_ADDRESS.matcher(value).matches()
     error = "Email tidak valid!"
     return
-}
-
-fun Activity.hideKeyboard() {
-    hideKeyboard(currentFocus ?: View(this))
-}
-
-fun Fragment.hideKeyboard() {
-    view?.let { activity?.hideKeyboard(it) }
-}
-
-
-fun Context.hideKeyboard(view: View) {
-    val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-    inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
 }
 
 @Suppress("DEPRECATION")

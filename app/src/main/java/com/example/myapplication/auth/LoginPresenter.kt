@@ -1,8 +1,10 @@
-package com.example.myapplication
+package com.example.myapplication.auth
 
 import android.content.Context
 import android.util.Log
 import android.widget.Toast
+import com.example.myapplication.models.GetResponse
+import com.example.myapplication.models.Profile
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.*

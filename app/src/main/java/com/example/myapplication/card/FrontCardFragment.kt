@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.card
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.myapplication.main.MainActivity
+import com.example.myapplication.models.Profile
 import com.example.myapplication.databinding.FragmentFrontCardBinding
 import com.squareup.picasso.Picasso
 

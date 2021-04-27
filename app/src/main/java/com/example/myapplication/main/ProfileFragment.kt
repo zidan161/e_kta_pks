@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.main
 
 import android.annotation.SuppressLint
 import android.app.*
@@ -7,6 +7,10 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.view.*
 import androidx.fragment.app.Fragment
+import com.example.myapplication.edit.EditActivity
+import com.example.myapplication.models.Profile
+import com.example.myapplication.auth.AuthActivity
+import com.example.myapplication.card.CardActivity
 import com.example.myapplication.databinding.FragmentProfileBinding
 import com.squareup.picasso.Picasso
 

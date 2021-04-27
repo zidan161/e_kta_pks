@@ -1,9 +1,11 @@
-package com.example.myapplication
+package com.example.myapplication.main
 
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityMainBinding
+import com.example.myapplication.isNetworkAvailable
 
 class MainActivity : AppCompatActivity() {
 

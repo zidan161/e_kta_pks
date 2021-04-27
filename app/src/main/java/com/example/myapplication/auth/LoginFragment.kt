@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.auth
 
 import android.content.Context
 import android.content.Intent
@@ -6,7 +6,10 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.*
 import android.widget.Toast
+import com.example.myapplication.*
 import com.example.myapplication.databinding.FragmentLoginBinding
+import com.example.myapplication.main.MainActivity
+import com.example.myapplication.models.Profile
 import com.google.android.material.snackbar.Snackbar
 
 class LoginFragment : Fragment(), View.OnClickListener, LoginPresenter.LoginView {

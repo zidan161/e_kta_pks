@@ -1,8 +1,9 @@
-package com.example.myapplication
+package com.example.myapplication.edit
 
 import android.content.Context
 import android.util.Log
 import android.widget.Toast
+import com.example.myapplication.models.*
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.*

@@ -1,10 +1,12 @@
-package com.example.myapplication
+package com.example.myapplication.auth
 
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.myapplication.main.MainActivity
+import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityAuthBinding
 
 class AuthActivity : AppCompatActivity() {
@@ -36,7 +38,6 @@ class AuthActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction().apply {
                 add(R.id.view_container, LoginFragment(), LoginFragment::class.java.simpleName)
-                addToBackStack(null)
                 commit()
             }
         }

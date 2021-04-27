@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.card
 
 import android.os.Bundle
 import android.view.View

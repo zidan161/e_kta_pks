@@ -1,13 +1,15 @@
-package com.example.myapplication
+package com.example.myapplication.main
 
 import android.util.Log
+import com.example.myapplication.models.GetResponse
+import com.example.myapplication.models.Profile
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.*
 import retrofit2.http.*
 
-class CardPresenter(private val view: CardView) {
+class ProfilePresenter(private val view: ProfileView) {
 
     object DataRepository {
 
@@ -35,14 +37,16 @@ class CardPresenter(private val view: CardView) {
 
     fun getAnggota(id: String?) {
         val webService = DataRepository.create()
-        webService.getAnggota("[('no_kta','=','$id')]").enqueue(object: Callback<GetResponse> {
+        webService.getAnggota("[('no_kta','=','$id')]").enqueue(object : Callback<GetResponse> {
 
             override fun onResponse(call: Call<GetResponse>, response: Response<GetResponse>) {
-                if (response.body()!!.isSuccess) {
-                    val data = response.body()!!.data[0]
-                    view.setProfile(data)
-                } else {
-                    Log.e("INI YG ERROR", "ERROR")
+                if (response.isSuccessful) {
+                    if (response.body()!!.isSuccess) {
+                        val data = response.body()!!.data[0]
+                        view.setProfile(data)
+                    } else {
+                        Log.e("INI YG ERROR", "ERROR")
+                    }
                 }
             }
 
@@ -53,12 +57,11 @@ class CardPresenter(private val view: CardView) {
     }
 
     interface ApiFun {
-        @GET("api/res.partner/search?fields=['id','name','street','street2','desa_id','kecamatan_id','kota_id','propinsi_id','jenis_kel','tmp_lahir','tgl_lahir','mobile','email','no_kta','tgl_aktivasi','aktivasi_oleh']&limit=20")
+        @GET("api/res.partner/search?fields=['id','name','street','street2','desa_id','kecamatan_id','kota_id','propinsi_id','jenis_kel','phone','mobile','email']&limit=20")
         fun getAnggota(@Query("domain") domain: String): Call<GetResponse>
     }
 
-
-    interface CardView {
-        fun setProfile(profile: Profile)
+    interface ProfileView {
+        fun setProfile(profile: Profile?)
     }
 }

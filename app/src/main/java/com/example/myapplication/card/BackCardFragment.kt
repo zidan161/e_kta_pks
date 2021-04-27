@@ -1,8 +1,9 @@
-package com.example.myapplication
+package com.example.myapplication.card
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.*
+import com.example.myapplication.R
 
 class BackCardFragment : Fragment() {
 

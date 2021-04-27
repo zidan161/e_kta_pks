@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.card
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

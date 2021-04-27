@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.edit
 
 import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -8,7 +8,12 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
+import com.example.myapplication.models.Place
+import com.example.myapplication.models.Profile
 import com.example.myapplication.databinding.ActivityEditBinding
+import com.example.myapplication.isError
+import com.example.myapplication.isValidEmail
+import com.example.myapplication.main.CustomArrayAdapter
 import com.google.gson.Gson
 
 class EditActivity : AppCompatActivity(), EditPresenter.EditView {
@@ -62,6 +67,8 @@ class EditActivity : AppCompatActivity(), EditPresenter.EditView {
             binding.edtBirthmonth.isError(birthmonth)
             binding.edtBirthyear.isError(birthyear)
             binding.edtAddress.isError(address)
+
+            binding.edtEmail.isValidEmail(email)
 
             val data: MutableMap<String, String> = mutableMapOf()
 
@@ -127,7 +134,7 @@ class EditActivity : AppCompatActivity(), EditPresenter.EditView {
                 binding.edtCity.text = null
                 binding.edtDistrict.text = null
                 binding.edtVillage.text = null
-                if (id == 49.toLong()){
+                if (id == 49L){
                     binding.tfVillage.visibility = View.VISIBLE
                     idProvince = id
                 } else {

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#F3EDED"
     android:gravity="center"
-    tools:context=".CardActivity">
+    tools:context=".card.CardActivity">
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
