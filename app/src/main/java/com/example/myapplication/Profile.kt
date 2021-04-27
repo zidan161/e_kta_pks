@@ -1,8 +1,6 @@
 package com.example.myapplication
 
-import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
 
 data class GetResponse(
         @SerializedName("success")
@@ -56,37 +54,3 @@ data class Profile(
         @SerializedName("aktivasi_oleh")
         val activationBy: List<String?>?
 )
-
-@Parcelize
-data class ProfilePost(
-        @SerializedName("no_kta")
-        var kta: String?,
-        @SerializedName("name")
-        var name: String,
-        @SerializedName("street")
-        var street: String,
-        @SerializedName("street2")
-        var street2: String,
-        @SerializedName("phone")
-        var phone: String?,
-        @SerializedName("mobile")
-        var mobile: String,
-        @SerializedName("email")
-        var email: String,
-        @SerializedName("propinsi_id")
-        var province: String,
-        @SerializedName("kota_id")
-        var city: String,
-        @SerializedName("kecamatan_id")
-        var district: String,
-        @SerializedName("desa_id")
-        var village: String,
-        @SerializedName("anggota")
-        var anggota: String,
-        @SerializedName("tmp_lahir")
-        var birthPlace: String?,
-        @SerializedName("tgl_lahir")
-        var birthDay: String?,
-        @SerializedName("passwd_kta")
-        var password: String?
-): Parcelable

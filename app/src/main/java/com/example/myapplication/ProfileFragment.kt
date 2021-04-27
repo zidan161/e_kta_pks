@@ -6,7 +6,6 @@ import android.content.*
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.*
-import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import com.example.myapplication.databinding.FragmentProfileBinding
 import com.squareup.picasso.Picasso

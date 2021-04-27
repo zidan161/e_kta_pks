@@ -5,9 +5,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatDelegate
 import com.example.myapplication.databinding.ActivityAuthBinding
-import com.example.myapplication.databinding.FragmentRegisterBinding
 
 class AuthActivity : AppCompatActivity() {
 

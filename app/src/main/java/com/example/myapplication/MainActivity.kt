@@ -12,8 +12,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private lateinit var binding: ActivityMainBinding
-    private val fragment1 = MainFragment()
-    private val fragment2 = ProfileFragment()
+    private val fragment = ProfileFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,21 +37,8 @@ class MainActivity : AppCompatActivity() {
             val fm = supportFragmentManager
 
             fm.beginTransaction().apply {
-                add(R.id.nav_host_fragment, fragment2, ProfileFragment::class.java.simpleName).hide(fragment2)
-                add(R.id.nav_host_fragment, fragment1, MainFragment::class.java.simpleName)
+                add(R.id.nav_host_fragment, fragment, ProfileFragment::class.java.simpleName)
             }.commit()
-
-            binding.navView.setOnNavigationItemSelectedListener {
-                when (it.itemId) {
-                    R.id.navigation_main -> {
-                        fm.beginTransaction().hide(fragment2).show(fragment1).commit()
-                    }
-                    R.id.navigation_profile -> {
-                        fm.beginTransaction().hide(fragment1).show(fragment2).commit()
-                    }
-                }
-                true
-            }
         }
     }
 }

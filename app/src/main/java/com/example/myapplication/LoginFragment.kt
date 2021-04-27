@@ -24,7 +24,6 @@ class LoginFragment : Fragment(), View.OnClickListener, LoginPresenter.LoginView
 
         bind.btnLogin.setOnClickListener (this)
         bind.tvPass.setOnClickListener (this)
-        bind.tvBtn.setOnClickListener (this)
 
         return view
     }
@@ -42,13 +41,6 @@ class LoginFragment : Fragment(), View.OnClickListener, LoginPresenter.LoginView
                     return
                 }
                 presenter.getAnggota(mobile, password)
-            }R.id.tv_btn -> {
-                requireActivity().supportFragmentManager.beginTransaction().apply {
-                    setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
-                    replace(R.id.view_container, RegisterFragment(), RegisterFragment::class.java.simpleName)
-                    addToBackStack(null)
-                    commit()
-                }
             } R.id.tv_pass -> {
                 requireActivity().supportFragmentManager.beginTransaction().apply {
                     setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
