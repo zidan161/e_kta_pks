@@ -58,41 +58,64 @@ class EditActivity : AppCompatActivity(), EditPresenter.EditView {
                 idVillage.toString()
             }
 
-            binding.edtNama.isError(name)
-            binding.edtEmail.isError(email)
-            binding.edtMobile.isError(mobile)
-            binding.edtPhone.isError(phone)
-            binding.edtBirthplace.isError(birthPlace)
-            binding.edtBirthday.isError(birthday)
-            binding.edtBirthmonth.isError(birthmonth)
-            binding.edtBirthyear.isError(birthyear)
-            binding.edtAddress.isError(address)
+            var isClear = true
 
-            binding.edtEmail.isValidEmail(email)
-
-            val data: MutableMap<String, String> = mutableMapOf()
-
-            data["name"] = name
-            data["email"] = email
-            data["street"] = address
-            data["mobile"] = mobile
-            data["phone"] = phone
-            data["tmp_lahir"] = birthPlace
-            data["tgl_lahir"] = "$birthyear-$birthmonth-$birthday"
-            if (idProvince != null) {
-                data["propinsi_id"] = idProvince.toString()
-                data["kota_id"] = idCity.toString()
-                data["kecamatan_id"] = idDistrict.toString()
-                data["desa_id"] = village
+            if (binding.edtNama.isError(name)){
+                isClear = false
+            }
+            if (binding.edtEmail.isError(email)){
+                isClear = false
+            }
+            if (binding.edtMobile.isError(mobile)){
+                isClear = false
+            }
+            if (binding.edtPhone.isError(phone)){
+                isClear = false
+            }
+            if (binding.edtBirthplace.isError(birthPlace)){
+                isClear = false
+            }
+            if (binding.edtBirthday.isError(birthday)){
+                isClear = false
+            }
+            if (binding.edtBirthmonth.isError(birthmonth)){
+                isClear = false
+            }
+            if (binding.edtBirthyear.isError(birthyear)){
+                isClear = false
+            }
+            if (binding.edtAddress.isError(address)){
+                isClear = false
+            }
+            if (binding.edtEmail.isValidEmail(email)){
+                isClear = false
             }
 
-            val raw = Gson().toJson(data)
+            if (isClear) {
+                val data: MutableMap<String, String> = mutableMapOf()
 
-            AlertDialog.Builder(this)
-                    .setMessage("Apakah Anda yakin, periksa data yang anda masukkan")
-                    .setPositiveButton("Yes") { _, _ -> presenter.updateAnggota(id, raw) }
-                    .setNegativeButton("No", null)
-                    .show()
+                data["name"] = name
+                data["email"] = email
+                data["street"] = address
+                data["mobile"] = mobile
+                data["phone"] = phone
+                data["tmp_lahir"] = birthPlace
+                data["tgl_lahir"] = "$birthyear-$birthmonth-$birthday"
+                if (idProvince != null) {
+                    data["propinsi_id"] = idProvince.toString()
+                    data["kota_id"] = idCity.toString()
+                    data["kecamatan_id"] = idDistrict.toString()
+                    data["desa_id"] = village
+                }
+
+                val raw = Gson().toJson(data)
+
+                AlertDialog.Builder(this)
+                        .setMessage("Apakah Anda yakin, periksa data yang anda masukkan")
+                        .setPositiveButton("Yes") { _, _ -> presenter.updateAnggota(id, raw) }
+                        .setNegativeButton("No", null)
+                        .show()
+            }
         }
     }
 

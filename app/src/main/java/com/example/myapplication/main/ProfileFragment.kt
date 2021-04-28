@@ -34,6 +34,7 @@ class ProfileFragment : Fragment(), ProfilePresenter.ProfileView {
             presenter.getAnggota(id)
         }
 
+        //Diganti ambil dari webservice
         Picasso.get().load("https://www.mantruckandbus.com/fileadmin/media/bilder/02_19/219_05_busbusiness_interviewHeader_1485x1254.jpg").into(bind.profileImage)
 
         bind.btnToCard.setOnClickListener {
@@ -61,25 +62,7 @@ class ProfileFragment : Fragment(), ProfilePresenter.ProfileView {
             intent.putExtra(EditActivity.ID, id)
             startActivity(intent)
         }
-
-        bind.profileImage.setOnClickListener {
-            val intentGallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
-            startActivityForResult(intentGallery, 100)
-        }
         return view
-    }
-
-    @Suppress("DEPRECATION")
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 100 && resultCode == Activity.RESULT_OK && data != null){
-            val bitmap = MediaStore.Images.Media.getBitmap(requireContext().contentResolver, data.data)
-            requireContext().getSharedPreferences(AuthActivity.PREFS_NAME, Context.MODE_PRIVATE)
-                    .edit()
-                    .putString("image", bitmap.toString())
-                    .apply()
-            Picasso.get().load(data.data).into(bind.profileImage)
-        }
     }
 
     @SuppressLint("SetTextI18n")

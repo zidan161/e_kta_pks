@@ -10,17 +10,20 @@ import java.net.InetSocketAddress
 import java.net.Socket
 import java.net.SocketAddress
 
-fun EditText.isError(value: String){
+fun EditText.isError(value: String): Boolean{
     if (value.isEmpty()){
         error = "Field ini harus diisi!"
-        return
+        return true
     }
+    return false
 }
 
-fun EditText.isValidEmail(value: String){
-    Patterns.EMAIL_ADDRESS.matcher(value).matches()
-    error = "Email tidak valid!"
-    return
+fun EditText.isValidEmail(value: String): Boolean {
+    if (!Patterns.EMAIL_ADDRESS.matcher(value).matches()) {
+       error = "Email tidak valid!"
+       return true
+    }
+    return false
 }
 
 @Suppress("DEPRECATION")

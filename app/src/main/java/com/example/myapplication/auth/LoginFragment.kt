@@ -34,16 +34,24 @@ class LoginFragment : Fragment(), View.OnClickListener, LoginPresenter.LoginView
     override fun onClick(v: View?) {
         when(v?.id){
             R.id.btn_login -> {
-                val mobile = bind.edtPhone.text.toString().trim()
-                val password = bind.edtPass.text.toString().trim()
-
-                bind.edtPhone.isError(mobile)
-                bind.edtPass.isError(password)
                 if (!isNetworkAvailable(requireContext())){
                     Snackbar.make(requireView(), "Tidak ada sambungan internet", Snackbar.LENGTH_SHORT).show()
                     return
                 }
-                presenter.getAnggota(mobile, password)
+
+                var isClear = true
+
+                val mobile = bind.edtPhone.text.toString().trim()
+                val password = bind.edtPass.text.toString().trim()
+
+                if (bind.edtPhone.isError(mobile)){
+                    isClear = false
+                }
+                if (bind.edtPass.isError(password)){
+                    isClear = false
+                }
+
+                if (isClear) { presenter.getAnggota(mobile, password) }
             } R.id.tv_pass -> {
                 requireActivity().supportFragmentManager.beginTransaction().apply {
                     setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
@@ -70,7 +78,6 @@ class LoginFragment : Fragment(), View.OnClickListener, LoginPresenter.LoginView
 
     override fun onDestroyView() {
         super.onDestroyView()
-        requireActivity().finish()
         binding = null
     }
 }

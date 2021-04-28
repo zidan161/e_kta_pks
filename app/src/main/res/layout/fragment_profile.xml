@@ -118,7 +118,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="20dp"
-                                android:drawablePadding="7dp"
                                 android:fontFamily="@font/opensans_regular"
                                 android:text="No. Telp"
                                 android:textColor="@color/black"
@@ -128,9 +127,8 @@
                                 android:id="@+id/tv_telp_val"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/opensans_regular"
-                                android:drawablePadding="5dp"
-                                android:drawableLeft="@drawable/ic_phone"/>
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/opensans_regular"/>
 
                             <View
                                 android:layout_width="match_parent"
@@ -142,7 +140,6 @@
                                 android:id="@+id/tv_email"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:drawablePadding="7dp"
                                 android:fontFamily="@font/opensans_regular"
                                 android:text="Email"
                                 android:textColor="@color/black"
@@ -152,9 +149,8 @@
                                 android:id="@+id/tv_email_val"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/opensans_regular"
-                                android:drawablePadding="5dp"
-                                android:drawableLeft="@drawable/ic_email"/>
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/opensans_regular"/>
 
                             <View
                                 android:layout_width="match_parent"
@@ -166,7 +162,6 @@
                                 android:id="@+id/tv_address"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:drawablePadding="7dp"
                                 android:fontFamily="@font/opensans_regular"
                                 android:text="Alamat"
                                 android:textColor="@color/black"
@@ -176,9 +171,8 @@
                                 android:id="@+id/tv_address2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/opensans_regular"
-                                android:drawablePadding="5dp"
-                                android:drawableLeft="@drawable/ic_home"/>
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/opensans_regular"/>
 
                         </LinearLayout>
 
@@ -199,20 +193,20 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/cv_bio" />
 
+                    <ImageButton
+                        android:id="@+id/fb_edit"
+                        android:background="?attr/selectableItemBackground"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="16dp"
+                        android:src="@drawable/ic_edit"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.core.widget.NestedScrollView>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-    <ImageButton
-        android:id="@+id/fb_edit"
-        android:background="?attr/selectableItemBackground"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_margin="16dp"
-        android:src="@drawable/ic_edit"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
